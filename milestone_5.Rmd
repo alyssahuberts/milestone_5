@@ -1,0 +1,67 @@
+---
+title: "milestone_5"
+author: "Fatma Al-Alawi"
+date: "3/20/2020"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+library(janitor)
+
+#energy_uses <- read_excel(path = "data/energy end uses.xlsx")
+building_age <- read_excel(path = "data/building size, number, material.xlsx", skip = 4)%>%
+  clean_names()%>%
+  slice(21:31)
+
+building_material <- read_excel(path = "data/building size, number, material.xlsx", skip = 4)%>%
+  clean_names() %>%
+  slice(111:129)
+
+demo_energy <- read_excel(path = "data/demolition energy for existing buildings.xlsx") %>%
+  clean_names() %>%
+  rename(small = small_building_5_000_15_000_sq_ft, medium = medium_building_50_000_150_000_sq_ft, large = large_building_500_000)
+
+embodied_carbon <- read_csv("data/CLF Embodied Carbon Benchmark Research 17.01.31.csv",  na=c("", "undefined")) %>%
+  clean_names() %>% 
+  filter(bldg_loc_region == "North America") %>%
+  arrange(desc(bldg_area_m2))
+```
+```{r}
+# I did a bit of further cleaning up of the existing data frame.
+# This is currently only a simple series of plots introducing the concept by visually depicting demolition 
+# energy wasted on each building type. Is there a better way to lay this out to be able to compare them all?
+# Also, ultimately, what I would like to get to with these data frames is to put together (multiply) number 
+# of buildings classified by building material and size (available in the building_material dataframe) with 
+# the demo energy dataframe to produce amount of energy needed to demolish these buildings. This could be put 
+# into perspective with an additional dataframe such as energy needed to build new similar buildings.
+```{r echo = FALSE}
+ggplot(demo_energy, aes(x=construction_type, y = small, fill=small)) + geom_col() + theme_classic() + labs(title = "Demolition Energy for Small Buildings per Construction Type", x = "Construction Type", y= "Square Feet")
+```
+```{r echo = FALSE}
+ggplot(demo_energy, aes(x=construction_type, y = medium, fill=medium)) + geom_col() + theme_classic() + labs(title = "Demolition Energy for Medium Buildings per Construction Type", x = "Construction Type", y= "Square Feet")
+```
+```{r echo = FALSE}
+ggplot(demo_energy, aes(x=construction_type, y = large, fill=large)) + geom_col() + theme_classic() + labs(title = "Demolition Energy for Large Buildings per Construction Type", x = "Construction Type", y= "Square Feet")
+```
+
+```{r include = FALSE}
+#ggplot(building_material, aes(x=x1, y= all_buildings)) + geom_col() + theme_classic() + labs(title = "Number of Existing #Buildings in the U.S. Classified by Building Material")
+```
+
+
+
+Currently, I have extracted from the CBES Survey Data two data frames: building materials data and building age data.
+I have focused on cleaning up the embodied carbon data, filtering for the data of North America. Eventually, this will be sorted by building size, and merged with building material data, and then compared to demolition data to calculate how demolitions emissions compare to embodied carbon emissions (as a percentage).
+
+**Sources of Data**
+
+***Sources of building energy use, size of buildings, number, construction material***
+U.S. Energy Information Administration. (n.d.). 2012 CBECS Survey Data. Retrieved from Independent Statistics and Analysis, U.S. Energy Information Administration: https://www.eia.gov/consumption/commercial/data/2012/index.php?view=characteristics
+
+***Database of Embodied energy in buildings***
+University of Washington, College of Built Environments. (n.d.). Embodied Carbon Benchmark Study. Retrieved from Carbon Leadership Forum: http://carbonleadershipforum.org/projects/embodied-carbon-benchmark-study/
+
+***Average energy of building demolition***
+Jackson, M. (2005). Embodied Energy and Historic Preservation: A Needed Reassessment. Association for Preservation Technology International. Retrieved from https://www.jstor.org/stable/40003163?origin=JSTOR-pdf&seq=1

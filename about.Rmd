@@ -1,0 +1,36 @@
+---
+title: "milestone 3"
+author: "Fatma Al-Alawi"
+date: "2/29/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+```
+
+**About**
+The building sector accounts for 39% of all global greenhouse gas emissions. Of that 39%, 11% is attributed to building materials and construction. (Architecture 2030, n.d.)
+The energy that goes into extracting, processing, manufacturing, transporting building materials, and using them in construction is high, and is known as “embodied energy”. 
+Embodied energy in existing buildings is high and valuable; and in an age where we need to be more carbon conscious, the decision to reuse buildings instead of demolishing them to replace them with new buildings is one we should consciously aspire to. 
+To better quantify carbon and lost opportunities in reducing carbon emissions, this project looks into existing buildings, the case towards their conservation and reuse (as opposed to demolition and new construction), and correlating between size, construction material, embodied energy averages, as well as demolition rates and the relevant average energy of building demolition.  Building ages will be mapped out using Maps and U.S. Energy Information Administration. 
+
+**Sources of Data:**
+Architecture 2030. (n.d.). New Buildings Embodied Carbon. Retrieved from Architecture 2030: https://architecture2030.org/new-buildings-embodied/
+
+*Sources of building energy use, size of buildings, number, construction material:*
+U.S. Energy Information Administration. (n.d.). 2012 CBECS Survey Data. Retrieved from Independent Statistics and Analysis, U.S. Energy Information Administration: https://www.eia.gov/consumption/commercial/data/2012/index.php?view=characteristics
+
+*Database of Embodied energy in buildings:*
+University of Washington, College of Built Environments. (n.d.). Embodied Carbon Benchmark Study. Retrieved from Carbon Leadership Forum: http://carbonleadershipforum.org/projects/embodied-carbon-benchmark-study/
+
+*Average energy of building demolition:*
+Jackson, M. (2005). Embodied Energy and Historic Preservation: A Needed Reassessment. Association for Preservation Technology International. Retrieved from https://www.jstor.org/stable/40003163?origin=JSTOR-pdf&seq=1
+
+
+
+github URL: https://github.com/FatmaAlAlawi/ml_3
+
+
+
+
+
